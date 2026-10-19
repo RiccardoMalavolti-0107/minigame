@@ -1,19 +1,44 @@
 .board-row {
     display: flex;
+    justify-content: center;
+    border-radius: 0px;
+}
+button {
+    height: 100px;
+    width: 400px;
+    border-radius: 10px;
+    font-size: 50px;
+    background-color: #01a7c2;
+    border: black solid;
+}
+
+div {
+    font-size: 100px;
+    justify-content: center;
+    color: #a3bac3;
+}
+html {
+    background-color: #007090;
+    size: 100%;
 }
 
 .square {
     width: 100px;
     height: 100px;
-    border: 1px solid black;
+    border: 1px solid #eaebed;
     margin-top: -1px;
     margin-right: -1px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 85px;
+    background-color: #006989;
+    color: #a3bac3;
 }
-
+.board {
+    margin-top: 16%;
+}
 .square.lastcell {
-    background-color: rgb(250, 0, 0);
+    background-color: #eaebed;
+    color: #007090;
 }
