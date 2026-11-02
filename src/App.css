@@ -21,6 +21,41 @@ html {
     background-color: #007090;
     size: 100%;
 }
+#night-mode-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #01a7c2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    size: 100%;
+}
+#night-mode-toggle:hover {
+    background-color: #007090;
+}
+html.night-mode {
+    background-color: #101820;
+}
+
+html.night-mode .board,
+html.night-mode .board div {
+    color: #e5e7eb;
+}
+
+html.night-mode .square {
+    background-color: #253342;
+    color: #e5e7eb;
+    border-color: #526170;
+}
+
+html.night-mode .square.lastcell {
+    background-color: #526170;
+    color: #fff;
+}
 
 .square {
     width: 100px;
