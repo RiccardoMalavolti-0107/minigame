@@ -1,3 +1,25 @@
+html {
+    --page-color: #f4f6fb;
+    --text-color: #231b35;
+    --button-color: #e3e7f0;
+    --button-hover-color: #d0d7e5;
+    --square-color: #e9edf5;
+    --square-border-color: #c1c9d8;
+    --highlight-color: #cbd2e1;
+    background-color: var(--page-color);
+    size: 100%;
+}
+
+html.night-mode {
+    --page-color: #13152a;
+    --text-color: #e5e7eb;
+    --button-color: #142135;
+    --button-hover-color: #0e1624;
+    --square-color: #231b35;
+    --square-border-color: #526170;
+    --highlight-color: #526170;
+}
+
 .board-row {
     display: flex;
     justify-content: center;
@@ -8,18 +30,15 @@ button {
     width: 400px;
     border-radius: 10px;
     font-size: 50px;
-    background-color: #01a7c2;
-    border: black solid;
+    background-color: var(--button-color);
+    color: var(--text-color);
+    border: 1px solid var(--square-border-color);
 }
 
 div {
     font-size: 100px;
     justify-content: center;
-    color: #a3bac3;
-}
-html {
-    background-color: #007090;
-    size: 100%;
+    color: var(--text-color);
 }
 #night-mode-toggle {
     position: absolute;
@@ -27,53 +46,34 @@ html {
     right: 10px;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #01a7c2;
-    color: #fff;
+    background-color: var(--button-color);
+    color: var(--text-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     size: 100%;
 }
 #night-mode-toggle:hover {
-    background-color: #007090;
-}
-html.night-mode {
-    background-color: #101820;
-}
-
-html.night-mode .board,
-html.night-mode .board div {
-    color: #e5e7eb;
-}
-
-html.night-mode .square {
-    background-color: #253342;
-    color: #e5e7eb;
-    border-color: #526170;
-}
-
-html.night-mode .square.lastcell {
-    background-color: #526170;
-    color: #fff;
+    background-color: var(--button-hover-color);
 }
 
 .square {
     width: 100px;
     height: 100px;
-    border: 1px solid #eaebed;
+    border: 1px solid var(--square-border-color);
     margin-top: -1px;
     margin-right: -1px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 85px;
-    background-color: #006989;
-    color: #a3bac3;
+    background-color: var(--square-color);
+    color: var(--text-color);
 }
 .board {
     margin-top: 16%;
 }
 .square.lastcell {
-    background-color: #eaebed;
-    color: #007090;
+    background-color: var(--highlight-color);
+    color: var(--text-color);
 }
