@@ -21,20 +21,24 @@ export function Board() {
     const [winner, setWinner] = useState();
     const [gameOver, setGameOver] = useState(false);
     const [lastCell, setLastCell] = useState();
-    const [playerPoints, setPlayerPoints] = useState({
-        [PLAYER_X]: 0,
-        [PLAYER_O]: 0,
-    });
     let lastPlayer = useRef();
 
+    // Update the game status, ignore the click when it is not allowed
+    //  - idx: index of the square
+    //  - player: left or right mouse button
     function handleClick(idx, player) {
+        // ignore the invalid players (to make it foolproof)
         if (player !== PLAYER_O && player !== PLAYER_X) return;
+        // ignore the repeated steps
         if (lastPlayer.current === player) return;
 
+        // ignore the occupied cells
         if (status[idx]) return;
 
+        // ignore if gameOver
         if (winner) return;
 
+        // update the status
         lastPlayer.current = player;
         const newStatus = status.map((value, index) => (index === idx ? player : value));
         win_check(newStatus, player);
@@ -46,7 +50,6 @@ export function Board() {
     function win_check(newStatus, player) {
         const win_array = WIN_POSITIONS.map((pos) => {
             const c1 = newStatus[pos[0]];
-
             const c2 = newStatus[pos[1]];
             const c3 = newStatus[pos[2]];
             return c1 && c1 === c2 && c1 === c3 ? true : false;
@@ -55,10 +58,6 @@ export function Board() {
         const isGameOver = win_array.some((value) => value);
         if (isGameOver) {
             setWinner(player);
-            setPlayerPoints((points) => ({
-                ...points,
-                [player]: points[player] + 1,
-            }));
             setGameOver(true);
             return;
         }
@@ -77,16 +76,12 @@ export function Board() {
 
     return (
         <div className="board">
-            <button id="night-mode-toggle" onClick={() => document.documentElement.classList.toggle("night-mode")}>
-                Éjszakai mód
-            </button>
             {BOARD_INDICES.map((rowIndex) => (
-                <div className="board-row" key={rowIndex}>
+                <div className="board-row">
                     {BOARD_INDICES.map((columnIndex) => {
                         const index = rowIndex * BOARD_SIDES + columnIndex;
                         return (
                             <Square
-                                key={index}
                                 value={status[index]}
                                 highlight={index === lastCell}
                                 onSquareClick={(player) => handleClick(index, player)}
@@ -95,11 +90,9 @@ export function Board() {
                     })}
                 </div>
             ))}
-            {gameOver && winner && (
-                <div>{`Vége. ${winner} győzött. Állás:X: ${playerPoints[PLAYER_X]} O: ${playerPoints[PLAYER_O]}`}</div>
-            )}
-            {gameOver && !winner && <div>Döntetlen! Nincs győztes.</div>}
-            {gameOver && <button onClick={handlePlayAgain}>Ujra</button>}
+            {gameOver && winner && <div>Game over! {winner} won</div>}
+            {gameOver && !winner && <div>Draw! No winner</div>}
+            {gameOver && <button onClick={handlePlayAgain}>Reset</button>}
         </div>
     );
 }
