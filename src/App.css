@@ -77,3 +77,26 @@ div {
     background-color: var(--highlight-color);
     color: var(--text-color);
 }
+#XPlayerAvatar,
+#OPlayerAvatar {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    margin-right: 10px;
+    border: 1px solid var(--square-border-color);
+}
+#set-avatar {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--button-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#night-mode.XPlayerAvatar,
+#night-mode.OPlayerAvatar {
+    background-color: var(--button-color);
+    color: var(--text-color);
+}
